@@ -24,3 +24,4 @@ it('should get squared numbers', () => {
   const result = calc(2);
   expect(result).toEqual(null);
 });
+

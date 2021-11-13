@@ -14,3 +14,5 @@ it('should return null if a string is passed', () => {
   const result = getMinSquaredNumber('ss');
   expect(result).toEqual(null);
 });
+
+
