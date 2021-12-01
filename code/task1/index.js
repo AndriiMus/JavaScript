@@ -1,4 +1,4 @@
-export function setButton(text) {
+export function createButton(text) {
   const body = document.querySelector('body');
   const newButton = document.createElement('button');
   newButton.textContent = text;
