@@ -10,13 +10,13 @@ const logTarget = (text, color) => {
   eventsListElem.innerHTML += `<span style ="color: ${color}; margin-left: 8px;">${text}<span>`;
 };
 
-const greenDiv = logTarget.bind(null, 'DIV', 'green');
-const greenP = logTarget.bind(null, 'P', 'green');
-const greenSpan = logTarget.bind(null, 'SPAN', 'green');
+const greenDiv = logTarget.bind(null, 'div', 'green');
+const greenP = logTarget.bind(null, 'p', 'green');
+const greenSpan = logTarget.bind(null, 'span', 'green');
 
-const logGreyDiv = logTarget.bind(null, 'DIV', 'grey');
-const greyP = logTarget.bind(null, 'P', 'grey');
-const greySpan = logTarget.bind(null, 'SPAN', 'grey');
+const logGreyDiv = logTarget.bind(null, 'div', 'grey');
+const greyP = logTarget.bind(null, 'p', 'grey');
+const greySpan = logTarget.bind(null, 'span', 'grey');
 
 clearButton.addEventListener('click', () => (eventsListElem.innerHTML = ''));
 
