@@ -51,3 +51,5 @@ const attachHandlers = () => {
 removeButton.addEventListener('click', removeHandlers);
 
 attachButton.addEventListener('click', attachHandlers);
+
+attachButton.addEventListener('DOMContentLoaded', attachHandlers);
