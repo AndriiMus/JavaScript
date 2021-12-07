@@ -12,11 +12,11 @@ const logTarget = (text, color) => {
 
 const greenDiv = logTarget.bind(null, 'DIV', 'green');
 const greenP = logTarget.bind(null, 'P', 'green');
-const greenSpan = logTarget.bind(null, 'Span', 'green');
+const greenSpan = logTarget.bind(null, 'SPAN', 'green');
 
-const grayDiv = logTarget.bind(null, 'DIV', 'grey');
-const grayP = logTarget.bind(null, 'P', 'grey');
-const graySpan = logTarget.bind(null, 'Span', 'grey');
+const logGreyDiv = logTarget.bind(null, 'DIV', 'grey');
+const greyP = logTarget.bind(null, 'P', 'grey');
+const greySpan = logTarget.bind(null, 'SPAN', 'grey');
 
 clearButton.addEventListener('click', () => (eventsListElem.innerHTML = ''));
 
@@ -25,9 +25,9 @@ const removeHandlers = () => {
   pElem.removeEventListener('click', greenP);
   spanElem.removeEventListener('click', greenSpan);
 
-  divElem.removeEventListener('click', grayDiv, true);
-  pElem.removeEventListener('click', grayP, true);
-  spanElem.removeEventListener('click', graySpan, true);
+  divElem.removeEventListener('click', logGreyDiv, true);
+  pElem.removeEventListener('click', greyP, true);
+  spanElem.removeEventListener('click', greySpan, true);
 };
 
 const attachHandlers = () => {
@@ -35,13 +35,15 @@ const attachHandlers = () => {
   pElem.addEventListener('click', greenP);
   spanElem.addEventListener('click', greenSpan);
 
-  divElem.addEventListener('click', grayDiv, true);
-  pElem.addEventListener('click', grayP, true);
-  spanElem.addEventListener('click', graySpan, true);
+  divElem.addEventListener('click', logGreyDiv, true);
+  pElem.addEventListener('click', greyP, true);
+  spanElem.addEventListener('click', greySpan, true);
 };
 
 removeButton.addEventListener('click', removeHandlers);
 
 attachButton.addEventListener('click', attachHandlers);
 
-document.addEventListener('DOMContentLoaded', attachHandlers);
+document.addEventListener('DOMContentLoaded', () => {
+  attachHandlers();
+});
