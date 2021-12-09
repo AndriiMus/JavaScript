@@ -59,7 +59,7 @@ const onSeatSelect = event => {
   const sectorNumber = event.target.closest('.sector').dataset.sectorNumber;
 
   const selectedSeatElem = document.querySelector('.board__selected-seat');
-  selectedSeatElem.textContent = `S ${sectorNumber} - L ${lineNumber} - S ${seatNuber} `;
+  selectedSeatElem.textContent = `S ${sectorNumber} - L ${lineNumber} - S ${seatNuber}`;
 };
 
 arenaEl.addEventListener('click', onSeatSelect);
