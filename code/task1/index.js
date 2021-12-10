@@ -1,67 +1,47 @@
-const generateNumberRange = (from, to) => {
-  const res = [];
-  for (let i = from; i <= to; i += 1) {
-    res.push(i);
-  }
-  return res;
+const tasks = [
+  { text: 'Buy milk', done: false },
+  { text: 'Pick up Tom from airport', done: false },
+  { text: 'Visit party', done: false },
+  { text: 'Visit doctor', done: true },
+  { text: 'Buy meat', done: true },
+];
+
+const listElem = document.querySelector('.list');
+const btnCreate = document.querySelector('.create-task-btn');
+
+const renderTasks = tasksList => {
+  const tasksElems = tasksList
+    .sort((a, b) => a.done - b.done)
+    .map(({ text, done }, index) => {
+      const listItemElem = document.createElement('li');
+      listItemElem.classList.add('list__item');
+      const checkbox = document.createElement('input');
+      checkbox.setAttribute('type', 'checkbox');
+      checkbox.checked = done;
+      checkbox.classList.add('list__item-checkbox');
+      if (done) {
+        listItemElem.classList.add('list__item_done');
+      }
+      checkbox.dataset.id = index;
+      listItemElem.append(checkbox, text);
+
+      return listItemElem;
+    });
+
+  listElem.append(...tasksElems);
 };
 
-const getLinesSeats = () =>
-  generateNumberRange(1, 10)
-    .map(
-      seatNumber =>
-        `<div 
-class="sector__seat"
-data-seat-number="${seatNumber}">
-</div>`,
-    )
-    .join('');
+renderTasks(tasks);
 
-const getSectorLines = () => {
-  const seat = getLinesSeats();
-  return generateNumberRange(1, 10)
-    .map(
-      lineNumber => `<div 
-class="sector__line"
-data-line-number="${lineNumber}">
- ${seat}
-</div>`,
-    )
-    .join('');
-};
-
-const arenaEl = document.querySelector('.arena');
-
-const renderArena = () => {
-  const lines = getSectorLines();
-
-  const sectrorsString = generateNumberRange(1, 3)
-    .map(
-      sectorNumber => `<div 
-  class="sector"
-   data-sector-number="${sectorNumber}">
-   ${lines}
-  </div>`,
-    )
-    .join('');
-
-  arenaEl.innerHTML = sectrorsString;
-};
-
-const onSeatSelect = event => {
-  const isSeat = event.target.classList.contains('sector__seat');
-  if (!isSeat) {
+const pushNewTask = () => {
+  const intTask = document.querySelector('.task-input');
+  if (intTask.value === '') {
     return;
   }
-
-  const seatNuber = event.target.dataset.seatNumber;
-  const lineNumber = event.target.closest('.sector__line').dataset.lineNumber;
-  const sectorNumber = event.target.closest('.sector').dataset.sectorNumber;
-
-  const selectedSeatElem = document.querySelector('.board__selected-seat');
-  selectedSeatElem.textContent = `S ${sectorNumber} - L ${lineNumber} - S ${seatNuber}`;
+  tasks.unshift({ text: intTask.value, done: false });
+  listElem.innerHTML = '';
+  intTask.value = '';
+  renderTasks(tasks);
 };
 
-arenaEl.addEventListener('click', onSeatSelect);
-
-renderArena();
+btnCreate.addEventListener('click', pushNewTask);
