@@ -45,3 +45,24 @@ const pushNewTask = () => {
 };
 
 btnCreate.addEventListener('click', pushNewTask);
+
+const checkboxSet = event => {
+  const isCheckbox = event.target.classList.contains('list__item-checkbox');
+  if (!isCheckbox) {
+    return;
+  }
+  const perentEl = event.target.parentElement;
+  const idEl = Number(event.target.dataset.id);
+  const isPerentDone = perentEl.classList.contains('list__item_done');
+  console.log(perentEl.textContent);
+  if (!isPerentDone) {
+    tasks.splice(idEl, 1, { text: perentEl.textContent, done: true });
+  }
+  if (isPerentDone) {
+    tasks.splice(idEl, 1, { text: perentEl.textContent, done: false });
+  }
+  listElem.innerHTML = '';
+  renderTasks(tasks);
+};
+
+listElem.addEventListener('click', checkboxSet);
