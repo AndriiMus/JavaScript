@@ -5,13 +5,14 @@ const ListElem = document.querySelector('.list');
 const createCheckBox = ({ done, id }) => {
   const checkbox = document.createElement('input');
   checkbox.setAttribute('type', 'checkbox');
+  checkbox.setAttribute('data-id', id);
   checkbox.checked = done;
   checkbox.classList.add('list__item-checkbox');
 
   return checkbox;
 };
 
-const createListItem = ({ text, done, id }) => {
+const createListItem = ({ text, done, id}) => {
   const listItemElem = document.createElement('li');
   listItemElem.classList.add('list__item');
   const checkboxElem = createCheckBox({ done, id });
