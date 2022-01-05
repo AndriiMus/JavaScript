@@ -12,7 +12,7 @@ const createCheckBox = ({ done, id }) => {
   return checkbox;
 };
 
-const createListItem = ({ text, done, id}) => {
+const createListItem = ({ text, done, id }) => {
   const listItemElem = document.createElement('li');
   listItemElem.classList.add('list__item');
   const checkboxElem = createCheckBox({ done, id });

@@ -5,7 +5,8 @@ function getTasksList() {
 }
 
 function getTaskById(taskId) {
-  return getTasksList().then(tasksList => tasksList.find(el => el.id === taskId));
+  const idUrl = `https://5e5cf5eb97d2ea0014796f01.mockapi.io/api/v1/tasks/${taskId}`;
+  return fetch(idUrl).then(response => response.json());
 }
 
 // examples
