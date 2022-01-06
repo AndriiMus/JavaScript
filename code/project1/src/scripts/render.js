@@ -1,4 +1,4 @@
-import { getItem, setItem } from './storage.js';
+import { getTasksList } from './tasksGateaway.js';
 
 const ListElem = document.querySelector('.list');
 
@@ -19,15 +19,23 @@ const createListItem = ({ text, done, id }) => {
   if (done) {
     listItemElem.classList.add('list__item_done');
   }
-  listItemElem.append(checkboxElem, text);
+
+  const textElem = document.createElement('span');
+  textElem.classList.add('list-item__text');
+  textElem.textContent = text;
+
+  const deleteBtnElem = document.createElement('button');
+  deleteBtnElem.classList.add('list-delete-button');
+  deleteBtnElem.setAttribute('data-id', id);
+  listItemElem.append(checkboxElem, textElem, deleteBtnElem);
 
   return listItemElem;
 };
 
 export const renderTasks = () => {
-  const tasksList = getItem('tasksList') || [];
-
   ListElem.innerHTML = '';
-  const tasksElems = tasksList.sort((a, b) => a.done - b.done).map(createListItem);
-  ListElem.append(...tasksElems);
+  getTasksList().then(data => {
+    const tasksElems = data.sort((a, b) => a.done - b.done).map(createListItem);
+    ListElem.append(...tasksElems);
+  });
 };
