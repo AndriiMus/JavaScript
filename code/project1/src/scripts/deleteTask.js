@@ -3,7 +3,7 @@ import { deleteTask, getTasksList } from './tasksGateaway.js';
 
 export const onDeleteTask = e => {
   const taskId = e.target.dataset.id;
-  deleteTask(taskId);
-
-  renderTasks();
+  deleteTask(taskId).then(() => {
+    renderTasks();
+  });
 };

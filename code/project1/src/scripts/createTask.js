@@ -14,6 +14,5 @@ export const onCreateTask = () => {
     done: false,
     createDate: new Date().toISOString(),
   };
-  createTask(newTasks);
-  renderTasks();
+  createTask(newTasks).then(() => renderTasks());
 };
