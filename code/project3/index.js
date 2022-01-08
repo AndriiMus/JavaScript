@@ -4,15 +4,8 @@ const userNameField = document.querySelector('#name');
 const passwordField = document.querySelector('#password');
 const submitButton = document.querySelector('.submit-button');
 const formElement = document.querySelector('.login-form');
-console.log(userNameField);
-console.log(passwordField);
-console.log(emailField);
 const isValidForm = () => {
-  if (
-    emailField.reportValidity() &&
-    passwordField.reportValidity() &&
-    userNameField.reportValidity()
-  ) {
+  if (formElement.reportValidity()) {
     submitButton.disabled = false;
   }
 };
@@ -28,7 +21,10 @@ const sendData = formData =>
 
 const submitData = event => {
   event.preventDefault();
-  const formData = Object.fromEntries(new FormData(formElement));
+  const formData = [...new FormData(formElement)].reduce(
+    (acc, [prop, value]) => ({ ...acc, [prop]: value }),
+    {},
+  );
   sendData(formData)
     .then(response => response.json())
     .then(userData => {
