@@ -7,6 +7,6 @@ export const renderRepos = reposList => {
     listElem.textContent = name;
     return listElem;
   });
-  listElem.innerHTML = '';
+
   listElem.append(...reposListElems);
 };

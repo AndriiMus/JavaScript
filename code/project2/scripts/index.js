@@ -5,6 +5,7 @@ import { hiddenSpinner, showSpinner } from './spiner.js';
 
 const showUserBtnElem = document.querySelector('.name-form__btn');
 const userNameInputElem = document.querySelector('.name-form__input');
+const listElem = document.querySelector('.repo-list');
 
 const defaultUser = {
   avatar_url: 'https://avatars3.githubusercontent.com/u10001',
@@ -14,10 +15,11 @@ const defaultUser = {
 renderUserData(defaultUser);
 
 const onSearchUser = () => {
+  showSpinner();
+  listElem.innerHTML = '';
   const userName = userNameInputElem.value;
   fetchUserData(userName)
     .then(userData => {
-      showSpinner();
       renderUserData(userData);
       return userData.repos_url;
     })
