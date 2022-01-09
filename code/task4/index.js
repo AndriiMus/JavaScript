@@ -1,23 +1,10 @@
-const successRequest = Promise.resolve({ name: 'Tom' });
-
-successRequest
-  .then(function onSuccess1(data) {
-    // (1)
-  })
-  .catch(function onError1(error) {
-    console.error('onError1', error.message);
-  });
-
-const failRequest = Promise.reject(new Error('Something went wrong'));
-
-failRequest
-  .catch(function onError2(error) {
-    console.error('onError2', error.message);
-    // (2)
-  })
-  .then(function onSuccess2(data) {
-    console.log('onSuccess2', data);
-  })
-  .catch(function onError3(error) {
-    console.error('onError3', error.message);
-  });
+export const parseUser = jsonObj => {
+  try {
+    const user = JSON.parse(jsonObj);
+  } catch {
+    return null;
+  }
+  return JSON.parse(jsonObj);
+};
+const json = '{"result":true, "count":42';
+console.log(parseUser(json));
