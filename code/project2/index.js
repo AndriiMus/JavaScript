@@ -1,7 +1,7 @@
-import { fetchRepositories, fetchUserData } from './scripts/gateways.js';
-import { renderUserData } from './scripts/user.js';
-import { cleanReposList, renderRepos } from './scripts/repos.js';
-import { hiddenSpinner, showSpinner } from './scripts/spiner.js';
+import { fetchRepositories, fetchUserData } from './gateways.js';
+import { renderUserData } from './user.js';
+import { cleanReposList, renderRepos } from './repos.js';
+import { hiddenSpinner, showSpinner } from './spiner.js';
 
 const showUserBtnElem = document.querySelector('.name-form__btn');
 const userNameInputElem = document.querySelector('.name-form__input');
