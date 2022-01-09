@@ -1,10 +1,15 @@
-export const parseUser = jsonObj => {
+export const fetchUser = async userId => {
   try {
-    const user = JSON.parse(jsonObj);
-  } catch {
-    return null;
+    const response = await fetch(`https://api.github.com/users/${userId}`);
+    console.log(response);
+    if (!response.ok) {
+      return null;
+    }
+    const userData = await response.json();
+    return userData;
+  } catch (err) {
+    throw new Error('Failed to fetch user');
   }
-  return JSON.parse(jsonObj);
 };
-const json = '{"result":true, "count":42';
-console.log(parseUser(json));
+
+fetchUser('facebook');
